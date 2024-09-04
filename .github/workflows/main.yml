@@ -124,5 +124,4 @@ jobs:
         with:
           context: ./nginx/
           push: true
-          tags: masher88/kittygram_final_gateway:0.2 
-                masher88/kittygram_final_gateway
+          tags: masher88/kittygram_final_gateway:0.2
