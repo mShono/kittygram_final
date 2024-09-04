@@ -27,7 +27,7 @@ services:
     image: masher88/kittygram_final_gateway
     env_file: .env
     ports:
-      - 8080:80
+      - 9000:80
     volumes:
       - static:/staticfiles/
       - media:/media_files/
