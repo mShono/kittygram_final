@@ -127,7 +127,7 @@ jobs:
         with:
           context: ./nginx/
           push: true
-          tags: masher88/kittygram_gateway:0.2
+          tags: masher88/kittygram_gateway:0.3
 
   deploy:
     runs-on: ubuntu-latest
