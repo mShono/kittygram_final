@@ -150,16 +150,16 @@ jobs:
     #     target: "kittygram"
     
     - run: |
-      echo '${{ secrets.SSH_KEY }}' >./the-key
-      chmod 600 ./the-key
-      
-      echo '#!/bin/bash
-      echo "${{ secrets.SSH_PASSPHRASE }}"
-      ' >./askpass.sh
-      chmod 700 ./askpass.sh
+        echo '${{ secrets.SSH_KEY }}' >./the-key
+        chmod 600 ./the-key
+        
+        echo '#!/bin/bash
+        echo "${{ secrets.SSH_PASSPHRASE }}"
+        ' >./askpass.sh
+        chmod 700 ./askpass.sh
 
-      SSH_ASKPASS=./askpass.sh scp -i ~/the-key ./docker-compose.production.yml \
-        ${{ secrets.USER }}@${{ secrets.HOST }}:kittygram
+        SSH_ASKPASS=./askpass.sh scp -i ~/the-key ./docker-compose.production.yml \
+          ${{ secrets.USER }}@${{ secrets.HOST }}:kittygram
 
     - name: Executing remote ssh commands to deploy
       uses: appleboy/ssh-action@master
