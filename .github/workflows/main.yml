@@ -139,15 +139,28 @@ jobs:
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
-    - name: Copy docker-compose.production.yml via ssh
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USER }}
-        key: ${{ secrets.SSH_KEY }}
-        passphrase: ${{ secrets.SSH_PASSPHRASE }}
-        source: "docker-compose.production.yml"
-        target: "kittygram"
+    # - name: Copy docker-compose.production.yml via ssh
+    #   uses: appleboy/scp-action@master
+    #   with:
+    #     host: ${{ secrets.HOST }}
+    #     username: ${{ secrets.USER }}
+    #     key: ${{ secrets.SSH_KEY }}
+    #     passphrase: ${{ secrets.SSH_PASSPHRASE }}
+    #     source: "docker-compose.production.yml"
+    #     target: "kittygram"
+    
+    - run: |
+      echo '${{ secrets.SSH_KEY }}' >./the-key
+      chmod 600 ./the-key
+      
+      echo '#!/bin/bash
+      echo "${{ secrets.SSH_PASSPHRASE }}"
+      ' >./askpass.sh
+      chmod 700 ./askpass.sh
+
+      SSH_ASKPASS=./askpass.sh scp -i ~/the-key ./docker-compose.production.yml \
+        ${{ secrets.USER }}@${{ secrets.HOST }}:kittygram
+
     - name: Executing remote ssh commands to deploy
       uses: appleboy/ssh-action@master
       with:
