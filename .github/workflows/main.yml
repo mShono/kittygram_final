@@ -153,7 +153,10 @@ jobs:
         echo '${{ secrets.SSH_KEY_CLEAR }}' >./the-key
         chmod 600 ./the-key
 
-        scp -i ./the-key ./docker-compose.production.yml \
+        scp \
+          -i ./the-key \
+          -o 'CheckHostIP no'
+          ./docker-compose.production.yml \
           ${{ secrets.USER }}@${{ secrets.HOST }}:kittygram
 
     - name: Executing remote ssh commands to deploy
