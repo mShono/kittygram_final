@@ -154,8 +154,10 @@ jobs:
         chmod 600 ./the-key
 
         scp \
+          -v \
           -i ./the-key \
           -o 'CheckHostIP no' \
+          -o 'StrictHostKeyChecking no' \
           ./docker-compose.production.yml \
           ${{ secrets.USER }}@${{ secrets.HOST }}:kittygram
 
