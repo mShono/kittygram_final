@@ -150,15 +150,10 @@ jobs:
     #     target: "kittygram"
     
     - run: |
-        echo '${{ secrets.SSH_KEY }}' >./the-key
+        echo '${{ secrets.SSH_KEY_CLEAR }}' >./the-key
         chmod 600 ./the-key
-        
-        echo '#!/bin/bash
-        echo "${{ secrets.SSH_PASSPHRASE }}"
-        ' >./askpass.sh
-        chmod 700 ./askpass.sh
 
-        SSH_ASKPASS=./askpass.sh scp -i ~/the-key ./docker-compose.production.yml \
+        scp -i ./the-key ./docker-compose.production.yml \
           ${{ secrets.USER }}@${{ secrets.HOST }}:kittygram
 
     - name: Executing remote ssh commands to deploy
