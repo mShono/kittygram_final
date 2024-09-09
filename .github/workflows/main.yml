@@ -155,7 +155,7 @@ jobs:
 
         scp \
           -i ./the-key \
-          -o 'CheckHostIP no'
+          -o 'CheckHostIP no' \
           ./docker-compose.production.yml \
           ${{ secrets.USER }}@${{ secrets.HOST }}:kittygram
 
