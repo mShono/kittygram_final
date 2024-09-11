@@ -85,7 +85,16 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Extract Git tag
         id: git_tag
-        run: echo "TAG=$(git describe --tags --always)" >> $GITHUB_ENV
+        # run: echo "TAG=$(git describe --tags --always)" >> $GITHUB_ENV
+        run: |
+          TAG=$(git describe --tags --always)
+          echo "TAG=$TAG" >> $GITHUB_ENV
+      - name: Verify TAG value
+        run: |
+          if [ -z "${{ env.TAG }}" ]; then
+            echo "TAG is empty. Defaulting to 'latest'."
+            echo "TAG=latest" >> $GITHUB_ENV
+          fi
       - name: Push to DockerHub
         uses: docker/build-push-action@v4
         with:
