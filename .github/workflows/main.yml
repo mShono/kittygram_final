@@ -194,6 +194,9 @@ jobs:
           sudo docker compose -f ./docker-compose.production.yml down
           sudo docker compose -f ./docker-compose.production.yml up -d
           sudo docker compose -f ./docker-compose.production.yml exec backend ./commands
+          sudo docker image rm $(docker image ls -f "dangling=true" -q)
+          sudo docker container prune
+          sudo docker image prune
 
   send_message:
     runs-on: ubuntu-latest
