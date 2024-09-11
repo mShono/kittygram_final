@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    # tags:
-    #   - '*' 
+    tags:
+      - '*' 
   workflow_dispatch:
 
 jobs:
@@ -83,17 +83,17 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }} 
           password: ${{ secrets.DOCKER_PASSWORD }}
-      # - name: Extract Git tag
-      #   run: echo "TAG=$(git describe --tags --always)" >> $GITHUB_ENV
+      - name: Extract Git tag
+        run: echo "TAG=$(git describe --tags --always)" >> $GITHUB_ENV
       - name: Push to DockerHub
         uses: docker/build-push-action@v4
         with:
           context: ./backend/
           push: true
           tags: masher88/kittygram_backend:0.2
-          # tags: |
-          # masher88/kittygram_backend:latest
-          # masher88/kittygram_backend:${{ env.TAG }}
+          tags: |
+          masher88/kittygram_backend:latest
+          masher88/kittygram_backend:${{ env.TAG }}
 
   frontend_tests:
     runs-on: ubuntu-latest
@@ -135,9 +135,9 @@ jobs:
           context: ./frontend/
           push: true
           tags: masher88/kittygram_frontend:0.2
-          # tags: |
-          # masher88/kittygram_frontend:latest
-          # masher88/kittygram_frontend:${{ env.TAG }}
+          tags: |
+          masher88/kittygram_frontend:latest
+          masher88/kittygram_frontend:${{ env.TAG }}
 
   build_gateway_and_push_to_docker_hub:
     name: Push gateway Docker image to DockerHub
@@ -158,9 +158,9 @@ jobs:
           context: ./nginx/
           push: true
           tags: masher88/kittygram_new_gateway:0.1
-          # tags: |
-          # masher88/kittygram_gateway:latest
-          # masher88/kittygram_gateway:${{ env.TAG }}
+          tags: |
+          masher88/kittygram_gateway:latest
+          masher88/kittygram_gateway:${{ env.TAG }}
 
   deploy:
     runs-on: ubuntu-latest
