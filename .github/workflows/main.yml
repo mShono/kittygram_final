@@ -84,6 +84,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }} 
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Extract Git tag
+        id: git_tag
         run: echo "TAG=$(git describe --tags --always)" >> $GITHUB_ENV
       - name: Push to DockerHub
         uses: docker/build-push-action@v4
