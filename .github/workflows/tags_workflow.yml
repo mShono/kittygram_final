@@ -6,7 +6,7 @@ on:
       - main
   workflow_dispatch:
 
-job:
+jobs:
 
   build_backend_and_push_to_docker_hub:
     name: Push Docker image to DockerHub
