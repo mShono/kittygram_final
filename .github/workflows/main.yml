@@ -92,11 +92,16 @@ jobs:
         with:
           context: ./backend/
           push: true
-          # tags: masher88/kittygram_backend:0.2
           tags: |
             masher88/kittygram_backend:latest
-          #   masher88/kittygram_backend:${{ env.TAG }}
             masher88/kittygram_backend:${{ env.SHA }}
+          # context: ./backend/
+          # push: true
+          # # tags: masher88/kittygram_backend:0.2
+          # tags: |
+          #   masher88/kittygram_backend:latest
+          # #   masher88/kittygram_backend:${{ env.TAG }}
+          #   masher88/kittygram_backend:${{ env.SHA }}
 
   frontend_tests:
     runs-on: ubuntu-latest
