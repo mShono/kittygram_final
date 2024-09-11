@@ -90,7 +90,7 @@ jobs:
         with:
           context: ./backend/
           push: true
-          tags: masher88/kittygram_backend:0.2
+          # tags: masher88/kittygram_backend:0.2
           tags: |
           masher88/kittygram_backend:latest
           masher88/kittygram_backend:${{ env.TAG }}
@@ -134,7 +134,7 @@ jobs:
         with:
           context: ./frontend/
           push: true
-          tags: masher88/kittygram_frontend:0.2
+          # tags: masher88/kittygram_frontend:0.2
           tags: |
           masher88/kittygram_frontend:latest
           masher88/kittygram_frontend:${{ env.TAG }}
@@ -157,7 +157,7 @@ jobs:
         with:
           context: ./nginx/
           push: true
-          tags: masher88/kittygram_new_gateway:0.1
+          # tags: masher88/kittygram_new_gateway:0.1
           tags: |
           masher88/kittygram_gateway:latest
           masher88/kittygram_gateway:${{ env.TAG }}
