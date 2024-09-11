@@ -3,5 +3,7 @@ python manage.py collectstatic
 rm -r /backend_static/static/admin
 rm -r /backend_static/static/rest_framework
 cp -r /app/collected_static/. /backend_static/static/
-yes
 gunicorn --bind 0.0.0.0:9000 kittygram_backend.wsgi
+sudo docker image rm $(sudo docker image ls -f "dangling=true" -q)
+sudo docker container prune
+sudo docker image prune
