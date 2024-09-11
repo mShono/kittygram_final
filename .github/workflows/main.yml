@@ -99,8 +99,8 @@ jobs:
       #       echo "TAG is empty. Defaulting to 'latest'."
       #       echo "TAG=latest" >> $GITHUB_ENV
       #     fi
-      - name: Verify SHA value
-        run: echo "Using SHA: ${{ env.SHA }}"
+      # - name: Verify SHA value
+      #   run: echo "Using SHA: ${{ env.SHA }}"
       - name: Push to DockerHub
         uses: docker/build-push-action@v4
         with:
