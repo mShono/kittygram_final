@@ -180,7 +180,7 @@ jobs:
           sudo docker compose -f ./docker-compose.production.yml down
           sudo docker compose -f ./docker-compose.production.yml up -d
           sudo docker image rm $(docker image ls -f "dangling=true" -q)
-          sudo docker container prune
+          sudo docker container prune -f
 
   send_message:
     runs-on: ubuntu-latest
