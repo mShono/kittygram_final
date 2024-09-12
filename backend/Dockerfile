@@ -12,5 +12,4 @@ COPY . .
 
 RUN chmod +x commands
 
-CMD ["gunicorn", "--bind", "0.0.0.0:9000", "kittygram_backend.wsgi"]
-# CMD ["bash", "./commands"] 
+CMD ["bash", "./commands"] 

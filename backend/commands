@@ -6,5 +6,5 @@ python manage.py collectstatic
 echo "Collectstatic succeed"
 cp -r /app/collected_static/. /backend_static/static/
 echo "Copy static succeed"
-gunicorn --bind 0.0.0.0:9000 kittygram_backend.wsgi
+exec gunicorn --bind 0.0.0.0:9000 kittygram_backend.wsgi
 echo "Gunicorn is running"
